@@ -4,9 +4,9 @@ pipeline {
         label 'Ansible-Node'
     }
     
-    tools{
-        maven "Maven-3.9.6"
-    }
+    //tools{
+      //  maven "Maven-3.9.6"
+  //  }
 
     stages {
         stage('Clone') {
@@ -14,11 +14,11 @@ pipeline {
                git 'https://github.com/ashokitschool/maven-web-app.git'
             }
         }
-        stage('Build') {
-            steps {
-               sh 'mvn clean package'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //        sh 'mvn clean package'
+        //     }
+        // }
         
         stage('Create Image'){
             steps{
