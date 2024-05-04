@@ -19,14 +19,25 @@ pipeline {
             }
         }
         
-        stage('Create Image'){
-            steps{
-               steps {
-                	script {
-                		sh 'ansible-playbook task.yml'
-                	}
+        // stage('Create Image'){
+        //     steps{
+        //        steps {
+        //         	script {
+        //         		sh 'ansible-playbook task.yml'
+        //         	}
+        //         }
+        //     }
+        // }
+    
+
+
+        stage('Run Ansible Playbook') {
+                    steps {
+                            ansiblePlaybook(
+                            playbook: 'task.yml',
+                            installation: 'ansible'
+                        )
+                    }
                 }
-            }
-        }
     }
 }
