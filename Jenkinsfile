@@ -21,7 +21,6 @@ pipeline {
         
         stage('Create Image'){
             steps {
-                installation: 'ansible'
                 script {
                 		sh 'ansible-playbook task.yml'
                 	}
