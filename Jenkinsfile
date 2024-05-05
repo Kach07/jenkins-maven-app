@@ -15,16 +15,6 @@ pipeline {
                 }
             }
         }
-        // stage('Push Docker Image') {
-        //     steps {
-        //         script {
-        //             // Push Docker image to registry
-        //             docker.withRegistry('https://registry.example.com', 'credentials_id') {
-        //                 docker.image('your_image_name:your_image_tag').push('latest')
-        //             }
-        //         }
-        //     }
-        // }
         stage('Deploy Docker Container') {
             steps {
                 script {
