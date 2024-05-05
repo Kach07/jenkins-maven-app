@@ -7,8 +7,7 @@ pipeline {
                git 'https://github.com/Kach07/jenkins-maven-app.git'
             }
         }
-        
-        stage('Build Docker Image') {
+                stage('Build Docker Image') {
             steps {
                 script {
                     // Build Docker image
