@@ -1,42 +1,37 @@
 pipeline {
-  
     agent any
-    
-    tools{
-       maven "Maven-3.9.6"
-      // ansibile
-   }
-
+ 
     stages {
         stage('Clone') {
             steps {
-               git 'https://github.com/ashokitschool/maven-web-app.git'
+               git 'https://github.com/Kach07/jenkins-maven-app.git'
             }
         }
-        stage('Build') {
-            steps {
-               sh 'mvn clean package'
-            }
-        }
-        
-        stage('Create Image'){
+        stage('Build Docker Image') {
             steps {
                 script {
-                		sh 'ansible-playbook task.yml'
-                	}
+                    // Build Docker image
+                    docker.build('maven-app:latest', '-f .')
                 }
             }
-        
-    
-
-
-        // stage('Run Ansible Playbook') {
-        //             steps {
-        //                     ansiblePlaybook(
-        //                     playbook: 'task.yml',
-        //                     installation: 'ansible'
-        //                 )
+        }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Push Docker image to registry
+        //             docker.withRegistry('https://registry.example.com', 'credentials_id') {
+        //                 docker.image('your_image_name:your_image_tag').push('latest')
         //             }
         //         }
+        //     }
+        // }
+        stage('Deploy Docker Container') {
+            steps {
+                script {
+                    // Deploy Docker container using Docker Compose
+                    sh 'docker-compose -f docker-compose.yml up -d'
+                }
+            }
+        }
     }
 }

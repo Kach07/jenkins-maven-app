@@ -1,0 +1,6 @@
+version: '3'
+services:
+  web:
+    image: your_image_name:your_image_tag
+    ports:
+      - "80:80"
